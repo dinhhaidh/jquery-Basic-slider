@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic slider product</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="./js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var src_img_click, src_img_first;
+            // b4 hiển thị hình ảnh mặc định
+            src_img_first = $('#list-thumb li:first-child img').attr('src');
+
+            // nó active thằng đầu tiên cs viền boder màu đỏ
+            $('#list-thumb li:first-child').addClass('active');
+            
+            $('#show img').attr('src', src_img_first);
+            // console.log(src_img_first);
+
+            $("#list-thumb li a").click(function(){
+                // b3: hiển thị hình ảnh dc chọn
+
+                // b1. lấy src từ hình ảnh dc chọn 
+                src_img_click = $(this).children('img').attr('src');
+                // console.log(src_img_click);
+
+                // b2: gán src lấy dc cho src của #show
+                $('#show img').attr('src', src_img_click);
+
+                // Khi kick vào thằng nào còn lại những thằng còn lại ko thuộc active, những thằng đã cs active rồi thì nó bỏ đi 
+                $("#list-thumb li").removeClass('active');
+
+                // parent đi vào cha, cụ thể là li
+                $(this).parent('li').addClass('active');
+
+                return false;
+            });
+        });
+    </script>
+    <div id="wrapper">
+        <h1>Basic slider product</h1>
+        <div id="slider">
+            <div id="show">
+                <img src="img/anh1.jpg" alt="">
+            </div>
+            <!-- end show -->
+            <div id="number-list-thumb">
+                <ul id="list-thumb">
+                    <li><a href=""><img src="img/anh1.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/anh2.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/anh4.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/anh3.jpg" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
